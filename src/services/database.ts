@@ -1,6 +1,6 @@
 import knex from "knex";
 
-knex({
+const con = knex({
     client: "pg",
     connection: {
         host: process.env.DB_HOST,
@@ -10,3 +10,8 @@ knex({
         database: process.env.DB_NAME,
     }
 });
+
+export default {
+    getClients: async () => con("clients")
+}
+
