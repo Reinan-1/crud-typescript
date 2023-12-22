@@ -70,4 +70,22 @@ export const updateClient = async (req: Request, res: Response) => {
     } catch {
         res.status(500).json({ "menssagem": "Erro interno do servidor." });
     }
-}
+};
+
+export const deleteClient = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+
+    try {
+
+        const client = await db.getClient(id);
+
+        if (!client) return res.status(404).json({ "messagem": "Cliente não encontrado." });
+
+        await db.deleteClient(id);
+
+        return res.status(204).json();
+
+    } catch {
+        res.status(500).json({ "menssagem": "Erro interno do servidor." });
+    }
+};
