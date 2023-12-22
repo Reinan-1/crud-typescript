@@ -61,12 +61,20 @@ DB_USER=USUARIO_BANCO_DE_DADOS
 DB_PASS=SENHA_BANCO_DE_DADOS
 DB_NAME=NOME_BANCO_DE_DADOS
 ```
-##### 5. Inicie o servidor da API:
+
+##### 5. Build a API:
+
+```
+npm run build
+```
+
+##### 6. Inicie o servidor da API:
 
 ```
 npm run start
 ```
-##### 6. Acesse a API em http://localhost:"porta-da-sua-api".
+
+##### 7. Acesse a API em http://localhost:"porta-da-sua-api".
 
 ## 🛢 Banco de Dados
 
