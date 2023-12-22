@@ -39,7 +39,8 @@ export default {
         await knex<Client>("clients")
             .where({ id })
             .update({ nome, email });
-    }
+    },
 
+    deleteClient: async (id: number) => knex<Client>("clients").where({ id }).delete(),
 }
 
