@@ -1,6 +1,7 @@
-import knex from "knex";
+import con from "knex";
+import { Client } from "../types/Client";
 
-const con = knex({
+const knex = con({
     client: "pg",
     connection: {
         host: process.env.DB_HOST,
@@ -12,6 +13,17 @@ const con = knex({
 });
 
 export default {
-    getClients: async () => con("clients")
+    getClients: async () => knex<Client>("clients"),
+
+    createClient: async ({ nome, email }: Omit<Client, "id">) => {
+        
+        const [client] = await knex<Omit<Client, "id">>("clients")
+            .insert({ nome, email })
+            .returning("*");
+
+        return client;
+    },
+
+    emailExists: async (email: string) => knex<Client>("clients").where({email}).first(), 
 }
 
