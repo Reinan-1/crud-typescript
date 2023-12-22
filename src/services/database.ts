@@ -15,6 +15,8 @@ const knex = con({
 export default {
     getClients: async () => knex<Client>("clients"),
 
+    getClient: async (id: number) => knex<Client>("clients").where({id}).first(),  
+        
     createClient: async ({ nome, email }: Omit<Client, "id">) => {
         
         const [client] = await knex<Omit<Client, "id">>("clients")
@@ -24,6 +26,8 @@ export default {
         return client;
     },
 
-    emailExists: async (email: string) => knex<Client>("clients").where({email}).first(), 
+    emailExists: async (email: string) => knex<Client>("clients").where({email}).first(),
+    
+    
 }
 
